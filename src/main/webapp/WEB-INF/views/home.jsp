@@ -139,7 +139,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-action="del">Confirmar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" data-action="del">Confirmar</button>
                     </div>
                 </div>
             </div>
