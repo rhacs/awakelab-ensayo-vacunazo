@@ -99,7 +99,7 @@
 
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-success" data-action="edit" data-id="${agenda.getId()}">✎</button>
-                                                    <button type="button" class="btn btn-sm btn-danger" data-action="del" data-id="${agenda.getId()}">🗑</button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-action="confirm" data-id="${agenda.getId()}">🗑</button>
                                                 </td>
                                             </tr>
                                         </core:forEach>
@@ -118,6 +118,33 @@
             </div>
         </div>
         <!-- /Contenido -->
+
+        <!-- Modal de confirmación -->
+        <div class="modal fade" id="confirmar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar Eliminación</h5>
+
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p class="text-left">
+                            ¿Está seguro de querer eliminar el registro seleccionado? Una vez confirmado no se podrá recuperar
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-action="del">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Modal de confirmación -->
 
         <!-- Dependencias JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
