@@ -49,7 +49,71 @@
         <div class="container my-5">
             <div class="row">
                 <div class="col-12">
+                    <h1 class="border-bottom pb-2 mb-4">Listado de Reservas</h1>
 
+                    <core:if test="${not empty param.no}">
+                        <div class="alert alert-warning mb-4">No existe el registro con el identificador numérico <strong>${param.no}</strong></div>
+                    </core:if>
+
+                    <core:if test="${not empty param.rm}">
+                        <div class="alert alert-success mb-4">El registro <strong>${param.rm}</strong> fue eliminado satisfactoriamente</div>
+                    </core:if>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-nowrap">#</th>
+                                    <th scope="col" class="text-nowrap">Paciente</th>
+                                    <th scope="col" class="text-nowrap">Doctor(a)</th>
+                                    <th scope="col" class="text-nowrap">Fecha</th>
+                                    <th scope="col" class="text-nowrap">Hora</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <core:choose>
+                                    <core:when test="${agendas != null && agendas.size() > 0}">
+                                        <core:forEach items="${agendas}" var="agenda">
+                                            <tr>
+                                                <th scope="row" class="text-nowrap">${agenda.getId()}</th>
+
+                                                <td>
+                                                    <p class="text-left">
+                                                        ${agenda.getPaciente().getNombreCompleto()} <br />
+                                                        ${agenda.getPaciente().getRutPaciente()}
+                                                    </p>
+                                                </td>
+
+                                                <td>
+                                                    <p class="text-left">
+                                                        ${agenda.getDoctor().getNombreCompleto()} <br />
+                                                        ${agenda.getDoctor().getEspecialidad().getDescripcion()}
+                                                    </p>
+                                                </td>
+
+                                                <td class="text-nowrap">${agenda.getFecha()}</td>
+
+                                                <td class="text-nowrap">${agenda.getHoraDesde()}</td>
+
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-success" data-action="edit" data-id="${agenda.getId()}">✎</button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-action="del" data-id="${agenda.getId()}">🗑</button>
+                                                </td>
+                                            </tr>
+                                        </core:forEach>
+                                    </core:when>
+
+                                    <core:otherwise>
+                                        <tr>
+                                            <th scope="row" colspan="6" class="text-center">No hay registros para mostrar</th>
+                                        </tr>
+                                    </core:otherwise>
+                                </core:choose>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
