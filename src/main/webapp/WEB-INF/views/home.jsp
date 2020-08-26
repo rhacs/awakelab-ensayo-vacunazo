@@ -37,7 +37,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/reservas">Reservar</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/reservas">Reservas</a>
                         </li>
                     </ul>
                 </div>
