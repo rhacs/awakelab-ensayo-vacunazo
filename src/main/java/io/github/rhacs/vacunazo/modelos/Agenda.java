@@ -1,7 +1,7 @@
 package io.github.rhacs.vacunazo.modelos;
 
 import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -43,7 +43,7 @@ public class Agenda {
      * Hora de la {@link Agenda}
      */
     @DateTimeFormat(pattern = "hh:mm")
-    private Time horaDesde;
+    private LocalTime horaDesde;
 
     /**
      * Duración de la {@link Agenda}
@@ -85,7 +85,7 @@ public class Agenda {
      * @param paciente  {@link Paciente}
      * @param doctor    {@link Doctor}
      */
-    public Agenda(Long id, Date fecha, Time horaDesde, Long duracion, Paciente paciente, Doctor doctor) {
+    public Agenda(Long id, Date fecha, LocalTime horaDesde, Long duracion, Paciente paciente, Doctor doctor) {
         this.id = id;
         this.fecha = fecha;
         this.horaDesde = horaDesde;
@@ -114,7 +114,7 @@ public class Agenda {
     /**
      * @return la hora
      */
-    public Time getHoraDesde() {
+    public LocalTime getHoraDesde() {
         return horaDesde;
     }
 
@@ -159,7 +159,7 @@ public class Agenda {
     /**
      * @param horaDesde la hora a establecer
      */
-    public void setHoraDesde(Time horaDesde) {
+    public void setHoraDesde(LocalTime horaDesde) {
         this.horaDesde = horaDesde;
     }
 
