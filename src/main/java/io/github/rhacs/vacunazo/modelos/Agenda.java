@@ -1,6 +1,6 @@
 package io.github.rhacs.vacunazo.modelos;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -37,7 +37,7 @@ public class Agenda {
      */
     @Future
     @DateTimeFormat(pattern = "dd/MM/yy")
-    private Date fecha;
+    private LocalDate fecha;
 
     /**
      * Hora de la {@link Agenda}
@@ -85,7 +85,7 @@ public class Agenda {
      * @param paciente  {@link Paciente}
      * @param doctor    {@link Doctor}
      */
-    public Agenda(Long id, Date fecha, LocalTime horaDesde, Long duracion, Paciente paciente, Doctor doctor) {
+    public Agenda(Long id, LocalDate fecha, LocalTime horaDesde, Long duracion, Paciente paciente, Doctor doctor) {
         this.id = id;
         this.fecha = fecha;
         this.horaDesde = horaDesde;
@@ -107,7 +107,7 @@ public class Agenda {
     /**
      * @return la fecha
      */
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -152,7 +152,7 @@ public class Agenda {
     /**
      * @param fecha la fecha a establecer
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
