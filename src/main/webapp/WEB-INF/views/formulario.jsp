@@ -17,6 +17,7 @@
         <!-- Hojas de Estilo -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.css" integrity="sha512-Yog+zkte66L91S9y4tcyhCpjvzKjlBxNLW38pm9K2ukBtPN55LKl3dyGvb7ylCFmn/kFKNzN9KbnGPOnHGHxbw==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" integrity="sha512-/Ae8qSd9X8ajHk6Zty0m8yfnKJPlelk42HTJjOHDWs1Tjr41RfsSkceZ/8yyJGLkxALGMIYd5L2oGemy/x1PLg==" crossorigin="anonymous" />
     </head>
 
     <body>
@@ -118,6 +119,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js" integrity="sha512-Hkemjwczq2iepz/dVjaZ/Xd+agLwV7Od5nQ+R74m4E8ruIblnDAJOewx2+xT4TQ+Q9Q2bcMHFD/d70RzVjrWVw==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/i18n/datepicker.es-ES.min.js" integrity="sha512-UN3v55CMLj/uaEMgUdapt4Fg/bDZ+Vz0XpF9Zg4eo5Ye+6YWh0QBhsygwf2iSjadfwWhxztVIPPKzF94fdxl+A==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js" integrity="sha512-2xXe2z/uA+2SyT/sTSt9Uq4jDKsT0lV4evd3eoE/oxKih8DSAsOF6LUb+ncafMJPAimWAXdu9W+yMXGrCVOzQA==" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             var doc = ${agenda.getDoctor().getId() != null ? agenda.getDoctor().getId() : -1};
