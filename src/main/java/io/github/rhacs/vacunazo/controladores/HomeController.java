@@ -1,18 +1,22 @@
 package io.github.rhacs.vacunazo.controladores;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 import io.github.rhacs.vacunazo.modelos.Agenda;
+import io.github.rhacs.vacunazo.modelos.Especialidad;
 import io.github.rhacs.vacunazo.repositorios.AgendasRepositorio;
 
 @Controller
@@ -78,7 +82,18 @@ public class HomeController {
             agenda = existente.get();
         }
 
-        // Agregar agenda al modelo
+        // Inicializar rest template
+        RestTemplate rest = new RestTemplate();
+
+        // Efectuar petición a la API y capturar respuesta
+        ResponseEntity<Especialidad[]> respuesta = rest.getForEntity("http://localhost/vacunazo/api/especialidades",
+                Especialidad[].class);
+
+        // Recuperar listado
+        List<Especialidad> especialidades = Arrays.asList(respuesta.getBody());
+
+        // Agregar objetos al modelo
+        modelo.addAttribute("especialidades", especialidades);
         modelo.addAttribute("agenda", agenda);
 
         // Devolver vista
