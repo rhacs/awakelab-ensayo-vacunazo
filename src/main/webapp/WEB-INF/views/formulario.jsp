@@ -79,15 +79,15 @@
 
                         <h4 class="border-bottom pb-2 mb-3 mt-5">Detalles del Especialista</h4>
                         <div class="form-group">
-                            <form:label path="doctor.especialidad">Especialidad</form:label>
-                            <form:select path="doctor.especialidad" cssClass="form-control">
+                            <form:label path="doctor.especialidad.id">Especialidad</form:label>
+                            <form:select path="doctor.especialidad.id" cssClass="form-control">
                                 <form:options items="${especialidades}" itemValue="id" itemLabel="descripcion" />
                             </form:select>
                         </div>
 
                         <div class="form-group">
-                            <form:label path="doctor">Doctor(a)</form:label>
-                            <form:select path="doctor" cssClass="form-control"></form:select>
+                            <form:label path="doctor.id">Doctor(a)</form:label>
+                            <form:select path="doctor.id" cssClass="form-control"></form:select>
                         </div>
 
                         <h4 class="border-bottom pb-2 mb-3 mt-5">Detalles de la Cita</h4>
