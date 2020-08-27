@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -49,7 +50,59 @@
         <div class="container my-5">
             <div class="row">
                 <div class="col-12">
+                    <h1 class="border-bottom pb-2 mb-4">Detalle de la Reserva</h1>
 
+                    <form:form method="post" modelAttribute="agenda">
+                        <form:hidden path="id" />
+
+                        <h4 class="border-bottom pb-2 mb-3">Detalles del Paciente</h4>
+                        <div class="form-group">
+                            <form:label path="paciente.nombre">Nombre</form:label>
+                            <form:input path="paciente.nombre" cssClass="form-control" cssErrorClass="form-control is-invalid" />
+                            <form:errors path="paciente.nombre" cssClass="invalid-feedback" />
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="paciente.apellido">Apellido</form:label>
+                            <form:input path="paciente.apellido" cssClass="form-control" cssErrorClass="form-control is-invalid" />
+                            <form:errors path="paciente.apellido" cssClass="invalid-feedback" />
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="paciente.rutPaciente">R.U.T.</form:label>
+                            <form:input path="paciente.rutPaciente" cssClass="form-control" cssErrorClass="form-control is-invalid" />
+                            <form:errors path="paciente.rutPaciente" cssClass="invalid-feedback" />
+                        </div>
+
+                        <h4 class="border-bottom pb-2 mb-3 mt-5">Detalles del Especialista</h4>
+                        <div class="form-group">
+                            <form:label path="doctor.especialidad.id">Especialidad</form:label>
+                            <form:select path="doctor.especialidad.id" cssClass="form-control"></form:select>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="doctor.id">Doctor(a)</form:label>
+                            <form:select path="doctor.id" cssClass="form-control"></form:select>
+                        </div>
+
+                        <h4 class="border-bottom pb-2 mb-3 mt-5">Detalles de la Cita</h4>
+                        <div class="form-group">
+                            <form:label path="fecha">Fecha</form:label>
+                            <form:input path="fecha" cssClass="form-control" cssErrorClass="form-control is-invalid" />
+                            <form:errors path="fecha" cssClass="invalid-feedback" />
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="horaDesde">Hora</form:label>
+                            <form:input path="horaDesde" cssClass="form-control" cssErrorClass="form-control is-invalid" />
+                            <form:errors path="horaDesde" cssClass="invalid-feedback" />
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form:form>
                 </div>
             </div>
         </div>
