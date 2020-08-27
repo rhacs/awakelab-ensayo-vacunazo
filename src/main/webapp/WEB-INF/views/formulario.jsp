@@ -117,6 +117,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/esm/popper.min.js" integrity="sha512-dq7mCGEqpNQ0jbrUSQgoMWfpBrQRcV706ASOmbwt+qH0/r0K3Pqvri+0rwtJG+CeHVvnf2IQlq3f1a7pQNPCBQ==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js" integrity="sha512-Hkemjwczq2iepz/dVjaZ/Xd+agLwV7Od5nQ+R74m4E8ruIblnDAJOewx2+xT4TQ+Q9Q2bcMHFD/d70RzVjrWVw==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/i18n/datepicker.es-ES.min.js" integrity="sha512-UN3v55CMLj/uaEMgUdapt4Fg/bDZ+Vz0XpF9Zg4eo5Ye+6YWh0QBhsygwf2iSjadfwWhxztVIPPKzF94fdxl+A==" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             var doc = ${agenda.getDoctor().getId() != null ? agenda.getDoctor().getId() : -1};
