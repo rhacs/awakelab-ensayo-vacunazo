@@ -16,6 +16,8 @@ import javax.validation.constraints.Future;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sun.istack.NotNull;
+
 import io.github.rhacs.vacunazo.Constantes;
 
 @Entity
@@ -35,14 +37,16 @@ public class Agenda {
     /**
      * Fecha de la {@link Agenda}
      */
+    @NotNull
     @Future
-    @DateTimeFormat(pattern = "dd/MM/yy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate fecha;
 
     /**
      * Hora de la {@link Agenda}
      */
-    @DateTimeFormat(pattern = "hh:mm")
+    @NotNull
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime horaDesde;
 
     /**
