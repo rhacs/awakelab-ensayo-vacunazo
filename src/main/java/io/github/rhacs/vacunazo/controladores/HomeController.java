@@ -114,4 +114,28 @@ public class HomeController {
         return "formulario";
     }
 
+    /**
+     * Elimina una {@link Agenda} del repositorio
+     * 
+     * @param id identificador numérico de la {@link Agenda}
+     * @return un objeto {@link String} que contiene el nombre de la vista
+     */
+    @GetMapping(path = "/reservas/{id:^[0-9]$}/del")
+    public String eliminarRegistro(@PathVariable Long id) {
+        // Buscar información de la agenda
+        Optional<Agenda> agenda = agendasRepositorio.findById(id);
+
+        // Verificar si existe
+        if (agenda.isPresent()) {
+            // Eliminar registro del repositorio
+            agendasRepositorio.delete(agenda.get());
+
+            // Redireccionar
+            return "redirect:/?rm=" + agenda.get().getId();
+        }
+
+        // Redireccionar
+        return "redirect:/?no=" + id;
+    }
+
 }
