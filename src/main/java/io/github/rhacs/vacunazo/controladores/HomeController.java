@@ -33,6 +33,27 @@ public class HomeController {
     @Autowired
     private AgendasRepositorio agendasRepositorio;
 
+    // Métodos
+    // -----------------------------------------------------------------------------------------
+
+    /**
+     * Busca el listado de {@link Especialidad}es mediante el uso de un
+     * {@link RestTemplate}
+     * 
+     * @return un objeto {@link List} con el resultado
+     */
+    private List<Especialidad> obtenerEspecialidades() {
+        // Inicializar rest
+        RestTemplate rest = new RestTemplate();
+
+        // Realizar petición a la API y capturar respuesta
+        ResponseEntity<Especialidad[]> respuesta = rest.getForEntity("http://localhost/vacunazo/api/especialidades",
+                Especialidad[].class);
+
+        // Devolver listado
+        return Arrays.asList(respuesta.getBody());
+    }
+
     // Solicitudes GET
     // -----------------------------------------------------------------------------------------
 
@@ -82,15 +103,8 @@ public class HomeController {
             agenda = existente.get();
         }
 
-        // Inicializar rest template
-        RestTemplate rest = new RestTemplate();
-
-        // Efectuar petición a la API y capturar respuesta
-        ResponseEntity<Especialidad[]> respuesta = rest.getForEntity("http://localhost/vacunazo/api/especialidades",
-                Especialidad[].class);
-
-        // Recuperar listado
-        List<Especialidad> especialidades = Arrays.asList(respuesta.getBody());
+        // Buscar listado de especialidades
+        List<Especialidad> especialidades = obtenerEspecialidades();
 
         // Agregar objetos al modelo
         modelo.addAttribute("especialidades", especialidades);
