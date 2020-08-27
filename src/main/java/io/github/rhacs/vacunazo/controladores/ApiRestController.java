@@ -1,5 +1,6 @@
 package io.github.rhacs.vacunazo.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,7 @@ public class ApiRestController {
      * proporcionada
      * 
      * @param id identificador numérico de la {@link Especialidad}
-     * @return un objeto {@link List} con el resultado, {@code null} en cualquier
-     *         otro caso
+     * @return un objeto {@link List} con el resultado
      */
     @GetMapping(path = "/doctores/especialidad/{id:^[0-9]+$}")
     public List<Doctor> buscarDoctoresPorEspecialidad(@PathVariable Long id) {
@@ -70,8 +70,8 @@ public class ApiRestController {
             return doctoresRepositorio.findByEspecialidad(especialidad.get(), Sort.by(Order.asc("nombre")));
         }
 
-        // Devolver null si la especialidad no existe
-        return null;
+        // Devolver un listado vacío si la especialidad no existe
+        return new ArrayList<>();
     }
 
 }
