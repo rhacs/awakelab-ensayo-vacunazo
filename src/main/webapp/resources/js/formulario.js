@@ -2,7 +2,20 @@
 $(function() {
     // Datepicker
     $('#fecha').datepicker({
-        language: "es-ES"
+        'language': "es-ES",
+        'format': 'dd/MM/yyyy'
+    });
+
+    // Timepicker
+    $('#horaDesde').timepicker({
+        'minTime': '10:00am',
+        'maxTime': '09:00pm',
+        'disableTimeRanges': [
+            ['01:00pm', '02:00pm']
+        ],
+        'timeFormat': 'H:i',
+        'step': 30,
+        'forceRoundTime': true
     });
 
     // Asignar el evento 'change' al select correspondiente a las Especialidades
