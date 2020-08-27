@@ -189,8 +189,23 @@ public class HomeController {
             // Reemplazar paciente
             agenda.setPaciente(ex.get());
         } else {
+            // Extraer paciente de la agenda
+            Paciente paciente = agenda.getPaciente();
+
+            // Buscar último paciente ingresado
+            Optional<Paciente> p = pacientesRepositorio.findTopByOrderByIdDesc();
+
+            // Verificar si existe
+            if(p.isPresent()) {
+                // Asignar identificador al paciente de acuerdo al último agregado
+                paciente.setId(p.get().getId() + 1L);
+            } else {
+                // Asignar nuevo identificador
+                paciente.setId(1L);
+            }
+
             // Guardar paciente
-            Paciente paciente = pacientesRepositorio.save(agenda.getPaciente());
+            paciente = pacientesRepositorio.save(paciente);
 
             // Asignar nuevo paciente a la agenda
             agenda.setPaciente(paciente);
