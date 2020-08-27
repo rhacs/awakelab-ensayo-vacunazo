@@ -19,7 +19,7 @@ $(function() {
     });
 
     // Asignar el evento 'change' al select correspondiente a las Especialidades
-    $('#doctor\\.especialidad').change(function() {
+    $('#doctor\\.especialidad\\.id').change(function() {
         // Obtener el valor del elemento seleccionado
         let id = $(this).children('option:selected').val();
 
@@ -38,16 +38,16 @@ $(function() {
                     .text(this.nombreCompleto);
 
                 // Agregar opción al select
-                $('#doctor').append(opcion);
+                $('#doctor\\.id').append(opcion);
             });
 
             // Seleccionar el doctor correspondiente
             if (doc != -1) {
-                $('#doctor option[value="' + doc + '"]').attr('selected', true);
+                $('#doctor\\.id option[value="' + doc + '"]').attr('selected', true);
             }
         });
     });
 
     // Forzar evento 'change'
-    $('#doctor\\.especialidad').change();
+    $('#doctor\\.especialidad\\.id').change();
 });
