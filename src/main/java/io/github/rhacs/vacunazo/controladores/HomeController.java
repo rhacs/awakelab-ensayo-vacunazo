@@ -4,20 +4,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import io.github.rhacs.vacunazo.modelos.Agenda;
 import io.github.rhacs.vacunazo.modelos.Especialidad;
+import io.github.rhacs.vacunazo.modelos.Paciente;
 import io.github.rhacs.vacunazo.repositorios.AgendasRepositorio;
+import io.github.rhacs.vacunazo.repositorios.PacientesRepositorio;
 
 @Controller
 @RequestMapping(path = "/")
@@ -32,6 +38,13 @@ public class HomeController {
      */
     @Autowired
     private AgendasRepositorio agendasRepositorio;
+
+    /**
+     * Objeto {@link PacientesRepositorio} que contiene los métodos de manipulación
+     * y consulta para los registros de {@link Paciente}s
+     */
+    @Autowired
+    private PacientesRepositorio pacientesRepositorio;
 
     // Métodos
     // -----------------------------------------------------------------------------------------
@@ -136,6 +149,73 @@ public class HomeController {
 
         // Redireccionar
         return "redirect:/?no=" + id;
+    }
+
+    // Solicitudes POST
+    // -----------------------------------------------------------------------------------------
+
+    /**
+     * Procesa el formulario para agregar o editar un registro
+     * 
+     * @param id            identificador numérico de la {@link Agenda}
+     * @param agenda        objeto {@link Agenda} que contiene la información a
+     *                      agregar
+     * @param modelo        objeto {@link Model} que contiene el modelo de la vista
+     * @param bindingResult objeto {@link BindingResult} que contiene los errores de
+     *                      validación
+     * @return un objeto {@link String} que contiene el nombre de la vista
+     */
+    @PostMapping(path = { "/reservas", "/reservas/{id:^[0-9]+$}" })
+    public String procesarFormulario(@PathVariable Optional<Long> id, @Valid Agenda agenda, BindingResult bindingResult,
+            Model modelo) {
+        // Verificar si existen errores de validación
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            // Buscar listado de especialidades
+            List<Especialidad> especialidades = obtenerEspecialidades();
+
+            // Agregar listado al modelo
+            modelo.addAttribute("especialidades", especialidades);
+
+            // Devolver vista
+            return "formulario";
+        }
+
+        // Buscar Paciente por RUT
+        Optional<Paciente> ex = pacientesRepositorio.findByRutPaciente(agenda.getPaciente().getRutPaciente());
+
+        // Verificar si existe
+        if (ex.isPresent()) {
+            // Reemplazar paciente
+            agenda.setPaciente(ex.get());
+        } else {
+            // Guardar paciente
+            Paciente paciente = pacientesRepositorio.save(agenda.getPaciente());
+
+            // Asignar nuevo paciente a la agenda
+            agenda.setPaciente(paciente);
+        }
+
+        // Verificar si el id de la agenda no existe
+        if (agenda.getId() == null) {
+            // Buscar último registro insertado en el registro
+            Optional<Agenda> a = agendasRepositorio.findTopByOrderByIdDesc();
+
+            // Verificar si existe
+            if (a.isPresent()) {
+                // Asignar el nuevo identificador
+                agenda.setId(a.get().getId() + 1);
+            } else {
+                // Asignar un valor arbitrario al identificador
+                agenda.setId(1L);
+            }
+        }
+
+        // Guardar cambios
+        agenda = agendasRepositorio.save(agenda);
+
+        // Redireccionar
+        return "redirect:/reservas/" + agenda.getId();
     }
 
 }
