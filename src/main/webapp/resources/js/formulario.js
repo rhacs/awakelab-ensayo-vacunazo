@@ -1,5 +1,10 @@
 // Esperar a que cargue la página
 $(function() {
+    // Datepicker
+    $('#fecha').datepicker({
+        language: "es-ES"
+    });
+
     // Asignar el evento 'change' al select correspondiente a las Especialidades
     $('#doctor\\.especialidad').change(function() {
         // Obtener el valor del elemento seleccionado
