@@ -66,11 +66,8 @@ public class ApiRestController {
 
         // Verificar si existe
         if (especialidad.isPresent()) {
-            // Buscar listado de doctores que tienen la especialidad especificada
-            List<Doctor> doctores = doctoresRepositorio.findByEspecialidad(especialidad.get());
-
-            // Devolver listado
-            return doctores;
+            // Buscar listado y devolver resultado
+            return doctoresRepositorio.findByEspecialidad(especialidad.get(), Sort.by(Order.asc("nombre")));
         }
 
         // Devolver null si la especialidad no existe
