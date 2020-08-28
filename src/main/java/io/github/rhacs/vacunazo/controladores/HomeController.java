@@ -229,8 +229,14 @@ public class HomeController {
         // Guardar cambios
         agenda = agendasRepositorio.save(agenda);
 
+        String accion = "ag";
+
+        if(id.isPresent()) {
+            accion = "ed";
+        }
+
         // Redireccionar
-        return "redirect:/reservas/" + agenda.getId();
+        return "redirect:/reservas/" + agenda.getId() + "?" + accion + "=true";
     }
 
 }
