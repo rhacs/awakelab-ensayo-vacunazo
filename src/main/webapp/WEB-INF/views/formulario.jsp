@@ -54,6 +54,10 @@
                 <div class="col-12">
                     <h1 class="border-bottom pb-2 mb-4">Detalle de la Reserva</h1>
 
+                    <core:if test="${not empty param.ag || not empty param.ed}">
+                        <div class="alert alert-success mb-4">El registro ha sido <strong>${not empty param.ag ? "agregado" : (not empty param.ed ? "editado" : "" )}</strong> correctamente</div>
+                    </core:if>
+
                     <form:form method="post" modelAttribute="agenda">
                         <form:hidden path="id" />
                         <form:hidden path="paciente.id" />
